@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 05ca4f18b17c81245bc5aa38fd5f1f46
+timeCreated: 1474612427
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 62755
+  packageName: ConeCollider
+  packageVersion: 1.0
+  assetPath: Assets/ConeCollider/Samples/Sample_1/Sample_1.unity
+  uploadId: 195381

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 13036ae80ed855b468a985ac69bfaee2
+timeCreated: 1474613441
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 62755
+  packageName: ConeCollider
+  packageVersion: 1.0
+  assetPath: Assets/ConeCollider/Samples/Sample_2/SwingObject.cs
+  uploadId: 195381

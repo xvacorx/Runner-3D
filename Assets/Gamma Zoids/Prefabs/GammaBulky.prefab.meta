@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 74b7965456014ac479ed89fe9fda4745
+timeCreated: 1511677521
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 105880
+  packageName: Gamma Zoids
+  packageVersion: 1.0
+  assetPath: Assets/Gamma Zoids/Prefabs/GammaBulky.prefab
+  uploadId: 214779

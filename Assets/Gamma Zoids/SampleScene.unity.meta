@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f6ab13b3faca542c789a40d1c7597fa7
+timeCreated: 1511459952
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 105880
+  packageName: Gamma Zoids
+  packageVersion: 1.0
+  assetPath: Assets/Gamma Zoids/SampleScene.unity
+  uploadId: 214779
