@@ -1,34 +1,85 @@
-using NUnit.Framework.Constraints;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float movementSpeed = 10f;
-    public float jumpForce = 7.5f;
-    private bool isGrounded;
-    [SerializeField] private Rigidbody rb;
+    public Transform[] rowPositions = new Transform[3]; // Positions in the row (X-axis)
+    public Transform[] columnPositions = new Transform[3]; // Positions in the column (Y-axis)
 
-    void Start()
-    {
-        //Cursor.lockState = CursorLockMode.Locked; // Toggle Cursor - OFF
-    }
+    float movementSpeed = 25f; // Speed of movement
+
+    private int currentRow = 1;
+    private int currentColumn = 1;
+    private bool isMoving = false;
+    private Vector3 targetPosition;
+
     void Update()
     {
+        if (!isMoving)
         {
-            isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.5f);
+            float horizontalInput = Input.GetAxisRaw("Horizontal");
+            float verticalInput = Input.GetAxisRaw("Vertical");
 
-            float horizontalMovement = Input.GetAxis("Horizontal");
-            horizontalMovement *= Time.deltaTime;
-
-            Vector3 movement = new Vector3(horizontalMovement, 0, 0) * 100f * movementSpeed * Time.deltaTime;
-            rb.MovePosition(transform.position + movement);
-
-            if (isGrounded && Input.GetButtonDown("Jump"))
+            if (horizontalInput != 0)
             {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                if (horizontalInput > 0) { MoveRight(); }
+                else { MoveLeft(); }
             }
-        } // Movement
+            else if (verticalInput != 0)
+            {
+                if (verticalInput > 0) { MoveUp(); }
+                else { MoveDown(); }
+            }
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * movementSpeed);
+            if (transform.position == targetPosition)
+            {
+                isMoving = false;
+            }
+        }
+    }
+
+    void MoveToPosition(Vector3 position)
+    {
+        targetPosition = position;
+        isMoving = true;
+    }
+
+    void MoveLeft()
+    {
+        if (currentRow > 0)
+        {
+            currentRow--;
+            MoveToPosition(new Vector3(rowPositions[currentRow].position.x, columnPositions[currentColumn].position.y, transform.position.z));
+        }
+    }
+
+    void MoveRight()
+    {
+        if (currentRow < 2)
+        {
+            currentRow++;
+            MoveToPosition(new Vector3(rowPositions[currentRow].position.x, columnPositions[currentColumn].position.y, transform.position.z));
+        }
+    }
+
+    void MoveUp()
+    {
+        if (currentColumn < 2)
+        {
+            currentColumn++;
+            MoveToPosition(new Vector3(rowPositions[currentRow].position.x, columnPositions[currentColumn].position.y, transform.position.z));
+        }
+    }
+
+    void MoveDown()
+    {
+        if (currentColumn > 0)
+        {
+            currentColumn--;
+            MoveToPosition(new Vector3(rowPositions[currentRow].position.x, columnPositions[currentColumn].position.y, transform.position.z));
+        }
     }
 }
