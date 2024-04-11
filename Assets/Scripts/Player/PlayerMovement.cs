@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform[] rowPositions = new Transform[3]; // Positions in the row (X-axis)
     public Transform[] columnPositions = new Transform[3]; // Positions in the column (Y-axis)
 
-    float movementSpeed = 25f; // Speed of movement
+    float movementSpeed = 50f;
 
     private int currentRow = 1;
     private int currentColumn = 1;
