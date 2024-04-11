@@ -8,8 +8,8 @@ public class ObjectMovement : MonoBehaviour
     public float maxHeight = 5f;
     public float minHeight = -5f;
     public float resetZ = 250f;
-    public float minScale = 50f;
-    public float maxScale = 200f;
+    public float minScaleZ = 50f;
+    public float maxScaleZ = 200f;
 
     private Vector3 originalPosition;
     private Vector3 originalScale;
@@ -31,10 +31,10 @@ public class ObjectMovement : MonoBehaviour
         // Calcular la distancia desde la posición de reseteo
         float distanceFromReset = resetZ - transform.position.z;
 
-        // Calcular el factor de escala basado en la distancia desde minScale a maxScale
-        float scaleFactor = Mathf.Clamp01((transform.position.z - minScale) / (maxScale - minScale));
+        // Calcular el factor de escala basado en la distancia desde minScaleZ a maxScaleZ
+        float scaleFactor = Mathf.Clamp01((transform.position.z - minScaleZ) / (maxScaleZ - minScaleZ));
 
-        // Aplicar el escalado entre 0 y 1 en el rango entre minScale y maxScale
+        // Aplicar el escalado entre 0 y 1 en el rango entre minScaleZ y maxScaleZ
         float scaledValue = Mathf.Lerp(0f, 1f, scaleFactor);
 
         // Aplicar el escalado al objeto
