@@ -8,12 +8,13 @@ public class ObjectMovement : MonoBehaviour
     public float maxHeight = 5f;
     public float minHeight = -5f;
     public float resetZ = 250f;
-    public float minScaleZ = 50f;
-    public float maxScaleZ = 200f;
+    public float offsetZ = -10f;
+    public float maxScaleZ = 100f;
 
     private Vector3 originalPosition;
     private Vector3 originalScale;
     private float randomHeight;
+    private float currentScaleZ = 0f;
 
     private void Start()
     {
@@ -28,23 +29,15 @@ public class ObjectMovement : MonoBehaviour
     {
         transform.position -= new Vector3(0, 0, speed * Time.deltaTime);
 
-        // Calcular la distancia desde la posición de reseteo
-        float distanceFromReset = resetZ - transform.position.z;
+        // Calcular la escala según la posición Z
+        currentScaleZ = Mathf.Lerp(0f, 1f, (transform.position.z - resetZ) / (maxScaleZ - resetZ));
+        transform.localScale = Vector3.Lerp(Vector3.zero, originalScale, currentScaleZ);
 
-        // Calcular el factor de escala basado en la distancia desde minScaleZ a maxScaleZ
-        float scaleFactor = Mathf.Clamp01((transform.position.z - minScaleZ) / (maxScaleZ - minScaleZ));
-
-        // Aplicar el escalado entre 0 y 1 en el rango entre minScaleZ y maxScaleZ
-        float scaledValue = Mathf.Lerp(0f, 1f, scaleFactor);
-
-        // Aplicar el escalado al objeto
-        transform.localScale = originalScale * scaledValue;
-
-        // Si el objeto está más allá de la posición de reseteo
-        if (transform.position.z < originalPosition.z)
+        if (transform.position.z < offsetZ)
         {
-            // Restablecer la posición en X y asignar una nueva altura aleatoria
+            // Reiniciar la posición y la escala
             transform.position = new Vector3(originalPosition.x, randomHeight, resetZ);
+            transform.localScale = originalScale;
             randomHeight = Random.Range(minHeight, maxHeight);
         }
     }
