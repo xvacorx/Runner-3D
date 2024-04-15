@@ -9,10 +9,17 @@ public class RandomSpawner : MonoBehaviour
     public int minObjectsAmount = 1;
     public float spawnInterval = 5f;
     public float spawnDistanceZ = 150f;
-
-    void Start()
+    private void Start()
+    {
+        StopInvoke();
+    }
+    public void StartInvoke()
     {
         InvokeRepeating("SpawnObjects", 5f, spawnInterval);
+    }
+    public void StopInvoke()
+    {
+        CancelInvoke("SpawnObjects");
     }
 
     void SpawnObjects()

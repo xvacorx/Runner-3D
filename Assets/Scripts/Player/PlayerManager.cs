@@ -4,41 +4,59 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public int startingLife = 3;
+
     private int life;
     public GameObject explosion;
 
     [SerializeField] GameController gameController;
     [SerializeField] UIController visualController;
+
     private void Start()
     {
         gameObject.GetComponent<MeshRenderer>().enabled = true;
-        life = startingLife;
+        gameObject.GetComponent<MeshCollider>().enabled = true;
+        life = 3;
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
-            //Instantiate(explosion, transform.position, Quaternion.identity);
-            Destroy(explosion, 1f);
-            if (life <= 1)
+            LoseLife();
+            GameObject explosionEffect = Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(explosionEffect, 1f);
+            if (life < 1)
             {
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
-                life--;
+                gameObject.GetComponent<MeshCollider>().enabled = false;
                 gameController.GameOver();
             }
             else
             {
                 Destroy(other.gameObject);
-                life--;
             }
-            visualController.UpdateLife(life);
-        }
+        } // Obstacles
+        else if (other.gameObject.CompareTag("Life"))
+        {
+            Destroy(other.gameObject);
+            AddLife();
+        } // Extra Lives
     }
-    public void AddLife(int hp)
+    public void AddLife()
     {
         life++;
         if (life >= 3) { life = 3; }
+        visualController.UpdateLife(life);
+    }
+    public void LoseLife()
+    {
+        life--;
+        visualController.UpdateLife(life);
+    }
+    public void Restart()
+    {
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        gameObject.GetComponent<MeshCollider>().enabled = true;
+        life = 3;
         visualController.UpdateLife(life);
     }
 }

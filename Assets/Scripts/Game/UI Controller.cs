@@ -12,6 +12,8 @@ public class UIController : MonoBehaviour
     [SerializeField] PlayerManager player;
     [SerializeField] RawImage[] hearts;
 
+    public bool scoreActive = true;
+
     public float score = 0;
     private float highScore = 0f;
 
@@ -22,15 +24,18 @@ public class UIController : MonoBehaviour
     }
     private void Update()
     {
-        score += Time.deltaTime;
-
-        if (score > highScore)
+        if (scoreActive)
         {
-            highScore = score;
-            PlayerPrefs.SetFloat("HigScore", highScore);
-            PlayerPrefs.Save();
+            score += Time.deltaTime;
+
+            if (score > highScore)
+            {
+                highScore = score;
+                PlayerPrefs.SetFloat("HigScore", highScore);
+                PlayerPrefs.Save();
+            }
+            UpdateScore();
         }
-        UpdateScore();
     }
     private void UpdateScore()
     {
