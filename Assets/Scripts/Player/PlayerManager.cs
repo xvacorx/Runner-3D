@@ -23,7 +23,7 @@ public class PlayerManager : MonoBehaviour
         {
             LoseLife();
             GameObject explosionEffect = Instantiate(explosion, transform.position, Quaternion.identity);
-            Destroy(explosionEffect, 1f);
+            Destroy(explosionEffect, 0.5f);
             if (life < 1)
             {
                 gameObject.GetComponent<MeshRenderer>().enabled = false;

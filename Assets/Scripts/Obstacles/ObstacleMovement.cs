@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ObstacleMovement : MonoBehaviour
 {
-    float speed = 10f;
+    float speed = 15f;
     private void Update()
     {
         transform.position -= new Vector3(0, 0, speed * Time.deltaTime);

@@ -6,9 +6,13 @@ public class RandomSpawner : MonoBehaviour
 {
     public GameObject[] objectsToSpawn;
     public Transform[] spawnPositions;
+    public GameObject SpecialEnemy;
+    public Transform SpecialPosition;
     public int minObjectsAmount = 1;
     public float spawnInterval = 5f;
     public float spawnDistanceZ = 150f;
+    private int spawnCount = 0;
+
     private void Start()
     {
         StopInvoke();
@@ -24,7 +28,7 @@ public class RandomSpawner : MonoBehaviour
 
     void SpawnObjects()
     {
-        if (spawnInterval < 1) { spawnInterval = 1; }
+        if (spawnInterval < 0.75f) { spawnInterval = 0.75f; minObjectsAmount += 1; }
         if (minObjectsAmount >= 9) { minObjectsAmount = 8; }
         int randomAmount = Random.Range(minObjectsAmount, 8);
 
@@ -50,6 +54,15 @@ public class RandomSpawner : MonoBehaviour
 
             // Spawn the object at the modified position
             Instantiate(randomObject, spawnPosition, Quaternion.identity);
+
+
+        }
+        spawnInterval -= 0.25f;
+        spawnCount += 1;
+        if (spawnCount >= 10)
+        {
+            spawnCount = 0;
+            Instantiate(SpecialEnemy, SpecialPosition.position, Quaternion.identity);
         }
     }
 }
