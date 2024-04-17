@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
 
     private int life;
     public GameObject explosion;
+    public GameObject extraLife;
 
     [SerializeField] GameController gameController;
     [SerializeField] UIController visualController;
@@ -22,8 +23,7 @@ public class PlayerManager : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             LoseLife();
-            GameObject explosionEffect = Instantiate(explosion, transform.position, Quaternion.identity);
-            Destroy(explosionEffect, 0.5f);
+            Instantiate(explosion, transform.position, Quaternion.identity);
             if (life < 1)
             {
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -37,6 +37,7 @@ public class PlayerManager : MonoBehaviour
         } // Obstacles
         else if (other.gameObject.CompareTag("Life"))
         {
+            Instantiate(extraLife, transform.position + 1.5f * Vector3.up, Quaternion.identity);
             Destroy(other.gameObject);
             AddLife();
         } // Extra Lives

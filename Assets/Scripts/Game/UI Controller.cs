@@ -9,7 +9,6 @@ public class UIController : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI highScoreText;
 
-    [SerializeField] PlayerManager player;
     [SerializeField] RawImage[] hearts;
 
     public bool scoreActive = true;
