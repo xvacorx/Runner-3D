@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
         visualControler.scoreActive = true;
         visualControler.score = 0;
         spawner.StartInvoke();
+        spawner.spawnInterval = 5;
     }
     public void GameOver()
     {
