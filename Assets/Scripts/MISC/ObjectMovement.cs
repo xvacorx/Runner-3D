@@ -23,22 +23,30 @@ public class ObjectMovement : MonoBehaviour
         minHeight += originalPosition.y;
         maxHeight += originalPosition.y;
         randomHeight = Random.Range(minHeight, maxHeight);
+
+        StartCoroutine(MoreSpeed());
     }
 
     private void Update()
     {
         transform.position -= new Vector3(0, 0, speed * Time.deltaTime);
 
-        // Calcular la escala según la posición Z
         currentScaleZ = Mathf.Lerp(0f, 1f, (transform.position.z - resetZ) / (maxScaleZ - resetZ));
         transform.localScale = Vector3.Lerp(Vector3.zero, originalScale, currentScaleZ);
 
         if (transform.position.z < offsetZ)
         {
-            // Reiniciar la posición y la escala
             transform.position = new Vector3(originalPosition.x, randomHeight, resetZ);
             transform.localScale = originalScale;
             randomHeight = Random.Range(minHeight, maxHeight);
+        }
+    }
+    private IEnumerator MoreSpeed()
+    {
+        while (true)
+        {
+            speed += 0.1f;
+            yield return new WaitForSeconds(5f);
         }
     }
 }

@@ -59,7 +59,7 @@ public class RandomSpawner : MonoBehaviour
         }
         spawnInterval -= 0.25f;
         spawnCount += 1;
-        if (spawnCount >= 10)
+        if (spawnCount >= 2)
         {
             spawnCount = 0;
             Instantiate(SpecialEnemy, SpecialPosition.position, Quaternion.identity);
