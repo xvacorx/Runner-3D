@@ -5025,6 +5025,10 @@ MonoBehaviour:
   - {fileID: 49693047}
   - {fileID: 562648150}
   - {fileID: 747043676}
+  movementSpeed: 50
+  rotationSpeed: 7.5
+  floatAmplitude: 0.25
+  floatFrequency: 1
 --- !u!64 &1622442854
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5042,7 +5046,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
